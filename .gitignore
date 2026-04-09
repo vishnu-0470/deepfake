@@ -1,0 +1,19 @@
+# Secrets
+deepshield/.env
+*.env
+
+# Uploads / runtime data
+deepshield/uploads/
+deepshield/logs/
+deepshield/models/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# OS
+.DS_Store
+Thumbs.db
