@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DeepShield — Secure Verification Node</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/static/style_cinematic.css"/>
+</head>
+<body>
+<div class="app">
+
+  <!-- BACKGROUND -->
+  <div class="bg-layer">
+    <img id="bgImage" class="bg-image"
+         src="https://images.unsplash.com/photo-1622979135225-d33ef5b1062b?q=80&w=2070&auto=format&fit=crop"
+         alt="bg"/>
+    <div class="bg-overlay" id="bgOverlay"></div>
+    <div class="bg-gradient"></div>
+    <div class="tech-grid"></div>
+    <div class="scanline-fx" id="scanlineFx"></div>
+  </div>
+
+  <!-- UI -->
+  <div class="ui-layer" id="uiLayer">
+
+    <!-- HEADER -->
+    <header class="c-header">
+      <div class="brand-wrap">
+        <div class="brand-shield" id="brandShield">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2L3 7v5c0 5.25 3.75 10.15 9 11.35C17.25 22.15 21 17.25 21 12V7L12 2z" fill="currentColor" opacity=".18"/>
+            <path d="M12 2L3 7v5c0 5.25 3.75 10.15 9 11.35C17.25 22.15 21 17.25 21 12V7L12 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div>
+          <span class="brand-name">DeepShield</span>
+          <span class="brand-sub">Secure Verification Node</span>
+        </div>
+      </div>
+      <button class="menu-btn">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </header>
+
+    <!-- MAIN -->
+    <main class="c-main">
+
+      <!-- ── STAGE: IDLE ── -->
+      <div class="stage active" id="stageIdle">
+        <div class="left-col">
+          <div class="eyebrow-row">
+            <div class="eyebrow-line" id="eyebrowLine"></div>
+            <span class="eyebrow-lbl" id="eyebrowLbl">Protocol 8.2</span>
+          </div>
+          <div class="hero-title">
+            <span class="hero-outline">Secure</span>
+            <span class="hero-solid">Identity</span>
+          </div>
+          <div class="action-area">
+            <button class="verify-btn" id="verifyBtn">
+              Verify Access
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M7 17L17 7M17 7H7M17 7v10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="right-col">
+          <div class="feature-grid">
+            <div class="feature-card">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M4 20c0-4 3.58-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <span>Identity</span>
+            </div>
+            <div class="feature-card">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <span>Liveness</span>
+            </div>
+            <div class="feature-card">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M9 9l6 6M15 9l-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <span>ArcFace</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── STAGE: SCANNING ── -->
+      <div class="stage" id="stageScanning">
+        <div class="left-col">
+          <div class="eyebrow-row">
+            <div class="eyebrow-line on"></div>
+            <span class="eyebrow-lbl on">Neural Pulse Active</span>
+          </div>
+          <div class="hero-title">
+            <span class="hero-outline">Secure</span>
+            <span class="hero-solid">Identity</span>
+          </div>
+          <div class="action-area">
+            <div class="scan-status">
+              <div class="scan-row">
+                <svg class="spinner" width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" opacity=".2"/>
+                  <path d="M12 2a10 10 0 0110 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <span class="scan-lbl font-mono">MAP_FACIAL_STRUCTURE... <span id="scanPct">0</span>%</span>
+              </div>
+              <div class="scan-bar"><div class="scan-fill" id="scanFill"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="right-col">
+          <div class="hologram-wrap">
+            <div class="ghost-id">
+              <div class="ghost-scan-v"></div>
+              <div class="ghost-inner">
+                <div class="ghost-avatar"></div>
+                <div class="ghost-lines">
+                  <div class="ghost-line"></div>
+                  <div class="ghost-line short"></div>
+                </div>
+              </div>
+              <div class="ghost-lbl">DATA_FRAGMENT_001_ENCRYPTED</div>
+            </div>
+            <div class="scan-pulse">
+              <div class="pulse-ring outer"></div>
+              <div class="pulse-ring inner"></div>
+              <div class="pulse-core">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" stroke="currentColor" stroke-width="1.5"/>
+                  <path d="M9 22V12h6v10" stroke="currentColor" stroke-width="1.5"/>
+                </svg>
+              </div>
+            </div>
+            <div class="face-tracker">
+              <img class="tracker-img" src="https://images.unsplash.com/photo-1622979135225-d33ef5b1062b?q=80&w=400&auto=format&fit=crop" alt="scan"/>
+              <div class="tracker-frame">
+                <div class="tracker-corner tl"></div>
+                <div class="tracker-corner tr"></div>
+                <div class="tracker-corner bl"></div>
+                <div class="tracker-corner br"></div>
+              </div>
+              <div class="tracker-lbl">Targeting_Face</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── STAGE: COMPLETED ── -->
+      <div class="stage" id="stageCompleted">
+        <div class="left-col">
+          <div class="eyebrow-row">
+            <div class="eyebrow-line"></div>
+            <span class="eyebrow-lbl">Protocol 8.2</span>
+          </div>
+          <div class="hero-title">
+            <span class="hero-outline">Secure</span>
+            <span class="hero-solid">Identity</span>
+          </div>
+          <div class="action-area">
+            <button class="restart-btn" id="restartBtn">Restart Protocol</button>
+          </div>
+        </div>
+        <div class="right-col">
+          <div class="verdict-card">
+            <div class="verdict-topbar" id="verdictBar"></div>
+            <div class="verdict-header">
+              <div class="verdict-badge" id="verdictBadge">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" id="verdictIcon">
+                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <span id="verdictStatus">Verified</span>
+              </div>
+              <div class="info-btn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 16v-4M12 8h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </div>
+            </div>
+            <h3 class="verdict-title">The Verdict</h3>
+            <p class="verdict-desc" id="verdictDesc">Authentication parameters confirmed. Facial biometrics and identity shards align perfectly with the Cloud Registry records.</p>
+            <div class="verdict-stats">
+              <div class="stat-box">
+                <span class="s-lbl">Confidence</span>
+                <span class="s-val font-mono" id="confVal">—</span>
+              </div>
+              <div class="stat-box">
+                <span class="s-lbl">Latency</span>
+                <span class="s-val font-mono" id="latVal">—</span>
+              </div>
+            </div>
+            <button class="enter-btn" id="enterBtn">
+              <span id="enterBtnTxt">Enter System</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7v10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="verdict-meta">
+              <span id="nodeInfo">NODE: 4A81A // CORE_8.2</span>
+              <div class="sync-row">
+                <div class="sync-dot" id="syncDot"></div>
+                <span>SYNC_OK</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="c-footer">
+      <div class="footer-left">
+        <div class="status-row">
+          <div class="status-dot"></div>
+          <span>Analysis Node Active</span>
+        </div>
+        <span class="footer-loc">BDS_HYD_IN</span>
+      </div>
+      <div class="footer-dots">
+        <div class="f-dot" id="fd0"></div>
+        <div class="f-dot" id="fd1"></div>
+        <div class="f-dot" id="fd2"></div>
+        <div class="f-dot active" id="fd3"></div>
+      </div>
+    </footer>
+
+  </div><!-- /ui-layer -->
+</div><!-- /app -->
+
+<!-- Hidden backend elements -->
+<video id="videoFeed" autoplay muted playsinline style="display:none"></video>
+<canvas id="videoCanvas" hidden></canvas>
+<div id="illumOverlay" class="illum-overlay hidden"></div>
+<div id="toast" class="toast hidden"></div>
+
+<script src="/static/app_cinematic.js"></script>
+</body>
+</html>

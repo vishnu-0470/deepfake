@@ -1,0 +1,16 @@
+2026-04-09 15:37:25.967 | WARNING  | backend.detectors.deepfake_classifier:<module>:37 - [Classifier] PyTorch/timm not installed — using FFT-only mode
+2026-04-09 15:37:27.754 | WARNING  | backend.detectors.rppg_detector:<module>:39 - [rPPG] MediaPipe not installed — face detection degraded
+2026-04-09 15:37:27.806 | WARNING  | backend.detectors.acoustic_analyzer:<module>:43 - [Acoustic] librosa not installed — using scipy fallback
+2026-04-09 15:37:27.809 | WARNING  | backend.detectors.document_ocr:<module>:52 - [FaceMatch] InsightFace not available — using OpenCV face embeddings
+INFO:     Started server process [15908]
+INFO:     Waiting for application startup.
+2026-04-09 15:37:27.829 | INFO     | backend.main:lifespan:30 - Starting DeepShield KYC v1.0.0
+2026-04-09 15:37:27.833 | INFO     | backend.pipeline.orchestrator:warmup:50 - [Pipeline] Warming up models...
+2026-04-09 15:37:31.926 | WARNING  | backend.pipeline.session_store:connect:43 - [Store] Redis unavailable (Error 22 connecting to localhost:6379. The remote computer refused the network connection.) — using in-memory store
+2026-04-09 15:37:31.927 | INFO     | backend.pipeline.orchestrator:warmup:59 - [Pipeline] Warmup complete.
+2026-04-09 15:37:31.927 | INFO     | backend.main:lifespan:39 - All models loaded. Server ready.
+INFO:     Application startup complete.
+ERROR:    [Errno 10048] error while attempting to bind on address ('0.0.0.0', 8000): [winerror 10048] only one usage of each socket address (protocol/network address/port) is normally permitted
+INFO:     Waiting for application shutdown.
+2026-04-09 15:37:31.928 | INFO     | backend.main:lifespan:42 - Shutting down DeepShield KYC.
+INFO:     Application shutdown complete.
