@@ -97,6 +97,10 @@ class DeepfakeClassifier:
     async def analyze(self, frames: list[np.ndarray]) -> DeepfakeClassifierResult:
         t0 = time.perf_counter()
 
+        # Lazy-load model on first use
+        if TORCH_OK and self._model is None:
+            await asyncio.get_event_loop().run_in_executor(None, self.load_model)
+
         if not frames:
             return DeepfakeClassifierResult(
                 label=DetectionLabel.UNKNOWN,

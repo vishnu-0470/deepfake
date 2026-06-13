@@ -1,6 +1,6 @@
 # ─────────────────────────────────────────────
 #  DeepShield KYC  –  Python Dependencies
-#  Render-compatible (Python 3.11)
+#  Render free tier (512MB RAM) - lightweight
 # ─────────────────────────────────────────────
 
 # Web Framework
@@ -9,19 +9,19 @@ uvicorn[standard]==0.29.0
 websockets==12.0
 python-multipart==0.0.9
 
-# Computer Vision & Image Processing
+# Computer Vision (headless = no GUI, smaller)
 opencv-python-headless==4.9.0.80
 Pillow==10.3.0
 numpy==1.26.4
 scipy==1.13.0
 
-# Deep Learning
+# Deep Learning (CPU only - loaded lazily)
+--extra-index-url https://download.pytorch.org/whl/cpu
 torch==2.3.0+cpu
 torchvision==0.18.0+cpu
 timm==1.0.3
 
-# Face Detection
-mediapipe==0.10.14
+# Face Detection (lightweight)
 onnxruntime==1.18.0
 
 # Audio Processing
@@ -30,7 +30,6 @@ soundfile==0.12.1
 
 # OCR
 pytesseract==0.3.10
-easyocr==1.7.1
 
 # Signal Processing
 scikit-learn==1.4.2
@@ -39,7 +38,7 @@ scikit-learn==1.4.2
 pydantic==2.7.1
 pydantic-settings==2.3.0
 
-# Async & Concurrency
+# Async
 anyio==4.4.0
 httpx==0.27.0
 

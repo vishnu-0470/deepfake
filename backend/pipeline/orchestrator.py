@@ -46,16 +46,9 @@ class KYCPipeline:
     """Orchestrates all detection layers and produces a final KYC verdict."""
 
     async def warmup(self):
-        """Pre-load all ML models at startup."""
+        """Connect session store only — models load lazily on first request."""
         logger.info("[Pipeline] Warming up models...")
-
-        # Connect session store
         await session_store.connect(settings.REDIS_URL)
-
-        # Load deepfake classifier (slow — GPU model)
-        await asyncio.get_event_loop().run_in_executor(
-            None, deepfake_classifier.load_model
-        )
         logger.info("[Pipeline] Warmup complete.")
 
     async def shutdown(self):
