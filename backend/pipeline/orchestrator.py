@@ -89,32 +89,23 @@ class KYCPipeline:
                     "detail": result.detail[:60],
                 })
 
-        # ── Run all layers in parallel ─────────────────────────────────────────
-        (
-            deepfake_res,
-            rppg_res,
-            acoustic_res,
-            hw_res,
-        ) = await asyncio.gather(
-            self._run_deepfake(frames),
-            self._run_rppg(frames),
-            self._run_acoustic(audio_paths),
-            self._run_hardware(),
-        )
+        # ── Run layers sequentially to stay within 512MB ─────────────────────
+        deepfake_res  = await self._run_deepfake(frames)
+        _notify("deepfake", deepfake_res)
 
-        # Notify live updates
-        _notify("deepfake",  deepfake_res)
-        _notify("rppg",      rppg_res)
-        _notify("acoustic",  acoustic_res)
-        _notify("hw",        hw_res)
+        rppg_res      = await self._run_rppg(frames)
+        _notify("rppg", rppg_res)
 
-        # Face match + illumination depend on frames (can run in parallel)
-        (illum_res, facematch_res) = await asyncio.gather(
-            self._run_illumination(frames, illum_colors),
-            self._run_face_match(doc_path, frames, applicant_name),
-        )
+        acoustic_res  = await self._run_acoustic(audio_paths)
+        _notify("acoustic", acoustic_res)
 
-        _notify("illum",     illum_res)
+        hw_res        = await self._run_hardware()
+        _notify("hw", hw_res)
+
+        illum_res     = await self._run_illumination(frames, illum_colors)
+        _notify("illum", illum_res)
+
+        facematch_res = await self._run_face_match(doc_path, frames, applicant_name)
         _notify("facematch", facematch_res)
 
         # Liveness (simple pass-through for now — assessed from video challenge)

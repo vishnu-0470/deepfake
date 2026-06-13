@@ -15,18 +15,9 @@ Pillow==10.3.0
 numpy==1.26.4
 scipy==1.13.0
 
-# Deep Learning (CPU only - loaded lazily)
---extra-index-url https://download.pytorch.org/whl/cpu
-torch==2.3.0+cpu
-torchvision==0.18.0+cpu
-timm==1.0.3
-
-# Face Detection (lightweight)
-onnxruntime==1.18.0
-
-# Audio Processing
-librosa==0.10.2
+# Audio Processing (lightweight, no librosa/numba)
 soundfile==0.12.1
+noisereduce==3.0.2
 
 # OCR
 pytesseract==0.3.10

@@ -129,8 +129,8 @@ class DeepfakeClassifier:
     # ── Core detection ────────────────────────────────────────────────────────
 
     def _run_detection(self, frames: list[np.ndarray]) -> DeepfakeClassifierResult:
-        # Sample up to 32 evenly spaced frames
-        indices = np.linspace(0, len(frames) - 1, min(32, len(frames)), dtype=int)
+        # Sample up to 8 evenly spaced frames (memory budget)
+        indices = np.linspace(0, len(frames) - 1, min(8, len(frames)), dtype=int)
         sampled = [frames[i] for i in indices]
 
         # Crop face from each frame
@@ -204,9 +204,11 @@ class DeepfakeClassifier:
             for crop in crops:
                 rgb   = cv2.cvtColor(crop, cv2.COLOR_BGR2RGB)
                 tensor = _TRANSFORM(rgb).unsqueeze(0).to(self._device)
-                logit  = self._model(tensor)
-                prob   = torch.sigmoid(logit).item()
+                with torch.cuda.amp.autocast(enabled=False):
+                    logit = self._model(tensor)
+                prob = torch.sigmoid(logit).item()
                 scores.append(float(prob))
+                del tensor
         return scores
 
     # ── FFT spectral fingerprint ──────────────────────────────────────────────
@@ -219,7 +221,7 @@ class DeepfakeClassifier:
         """
         try:
             gray = cv2.cvtColor(crop, cv2.COLOR_BGR2GRAY).astype(np.float32)
-            gray = cv2.resize(gray, (256, 256))
+            gray = cv2.resize(gray, (128, 128))
 
             # 2D FFT + shift to centre
             fft     = np.fft.fft2(gray)

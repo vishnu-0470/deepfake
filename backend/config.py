@@ -24,7 +24,7 @@ class Settings(BaseSettings):
     # ── Server ───────────────────────────────────────────
     HOST: str = "0.0.0.0"
     PORT: int = 8000
-    WORKERS: int = 4
+    WORKERS: int = 1
 
     # ── Redis (session & task queue) ─────────────────────
     REDIS_URL: str = "redis://localhost:6379/0"
