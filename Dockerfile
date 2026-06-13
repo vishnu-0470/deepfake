@@ -4,11 +4,17 @@
 
 FROM python:3.11-slim AS builder
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    gcc g++ make \
-    libgl1-mesa-glx libglib2.0-0 \
-    ffmpeg \
-    tesseract-ocr tesseract-ocr-eng \
+RUN apt-get update -o Acquire::CompressionTypes::Order::=gz && \
+    apt-get install -y --no-install-recommends \
+        gcc g++ make \
+        libgl1 \
+        libglib2.0-0 \
+        libsm6 \
+        libxext6 \
+        libxrender-dev \
+        ffmpeg \
+        tesseract-ocr \
+        tesseract-ocr-eng \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /build
@@ -17,7 +23,7 @@ WORKDIR /build
 COPY hardware/camera_auth.c ./hardware/
 RUN gcc -O2 -o ./hardware/camera_auth ./hardware/camera_auth.c
 
-# Install Python dependencies (CPU-only torch)
+# Install Python dependencies (CPU-only torch first)
 COPY requirements.txt .
 RUN pip install --upgrade pip && \
     pip install --no-cache-dir \
@@ -30,13 +36,18 @@ RUN pip install --upgrade pip && \
 FROM python:3.11-slim AS runtime
 
 LABEL maintainer="DeepShield KYC"
-LABEL description="AI-powered deepfake detection for Video KYC"
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    libgl1-mesa-glx libglib2.0-0 \
-    ffmpeg \
-    tesseract-ocr tesseract-ocr-eng \
-    procps \
+RUN apt-get update -o Acquire::CompressionTypes::Order::=gz && \
+    apt-get install -y --no-install-recommends \
+        libgl1 \
+        libglib2.0-0 \
+        libsm6 \
+        libxext6 \
+        libxrender-dev \
+        ffmpeg \
+        tesseract-ocr \
+        tesseract-ocr-eng \
+        procps \
     && rm -rf /var/lib/apt/lists/*
 
 RUN useradd -m -u 1000 deepshield
