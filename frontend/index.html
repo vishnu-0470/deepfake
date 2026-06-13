@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DeepShield KYC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+<div class="noise"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
+<div class="shell">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2L3 7v5c0 5.25 3.75 10.15 9 11.35C17.25 22.15 21 17.25 21 12V7L12 2z" fill="currentColor" opacity=".18"/><path d="M12 2L3 7v5c0 5.25 3.75 10.15 9 11.35C17.25 22.15 21 17.25 21 12V7L12 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div>
+        <p class="brand-name">DeepShield</p>
+        <p class="brand-sub">KYC Verification</p>
+      </div>
+    </div>
+
+    <nav class="step-nav">
+      <div class="snav-item active" id="nav1"><div class="snav-dot"><span>1</span></div><div><p class="snav-label">Identity</p><p class="snav-sub">Personal details</p></div></div>
+      <div class="snav-line"></div>
+      <div class="snav-item" id="nav2"><div class="snav-dot"><span>2</span></div><div><p class="snav-label">Document</p><p class="snav-sub">ID upload</p></div></div>
+      <div class="snav-line"></div>
+      <div class="snav-item" id="nav3"><div class="snav-dot"><span>3</span></div><div><p class="snav-label">Live Video</p><p class="snav-sub">Biometric scan</p></div></div>
+      <div class="snav-line"></div>
+      <div class="snav-item" id="nav4"><div class="snav-dot"><span>4</span></div><div><p class="snav-label">Verdict</p><p class="snav-sub">AI analysis</p></div></div>
+    </nav>
+
+    <div class="log-panel">
+      <div class="log-header"><span class="live-dot"></span>System log</div>
+      <div class="log-body" id="logBody">
+        <div class="log-row"><span class="log-time font-mono">--:--</span><span class="log-msg">Awaiting session...</span></div>
+      </div>
+    </div>
+
+    <div class="sidebar-foot">
+      <svg width="11" height="11" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1L2 4v4c0 3.5 2.5 6.77 6 7.57C11.5 14.77 14 11.5 14 8V4L8 1z"/></svg>
+      RBI V-CIP &nbsp;·&nbsp; AES-256
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- ── STEP 1 ── -->
+    <section class="panel active" id="step1">
+      <div class="split">
+        <div class="split-left">
+          <p class="eyebrow">Step 01 / 04</p>
+          <h1 class="title">Verify your<br/><em>identity</em></h1>
+          <p class="desc">Start your secure KYC session. All data is encrypted and processed under RBI V-CIP guidelines.</p>
+          <ul class="feat-list">
+            <li><span class="feat-dot c"></span>Multi-layer AI deepfake detection</li>
+            <li><span class="feat-dot g"></span>Biological heart-rate verification</li>
+            <li><span class="feat-dot o"></span>Hardware camera authentication</li>
+          </ul>
+          <div class="scan-anim">
+            <div class="sa-ring r1"></div>
+            <div class="sa-ring r2"></div>
+            <div class="sa-ring r3"></div>
+            <div class="sa-core"><svg width="30" height="30" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M4 20c0-4 3.58-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          </div>
+        </div>
+        <div class="split-right">
+          <div class="card">
+            <p class="card-title">Create your session</p>
+            <button class="google-btn" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+              Continue with Google
+            </button>
+            <div class="or-divider"><span>or enter manually</span></div>
+            <div class="form-row-2">
+              <div class="fg"><label>Full name</label><input type="text" id="applicantName" placeholder="Priya Sharma"/></div>
+              <div class="fg"><label>ID type</label><select id="idType"><option value="AADHAAR">Aadhaar Card</option><option value="PAN">PAN Card</option><option value="PASSPORT">Passport</option></select></div>
+            </div>
+            <div class="fg"><label>Date of birth</label><input type="date" id="dob"/></div>
+            <label class="terms">
+              <input type="checkbox" id="termsCheck"/>
+              <span class="chk"></span>
+              I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+            </label>
+            <button class="btn-p" id="step1Next">Begin Verification <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── STEP 2 ── -->
+    <section class="panel" id="step2">
+      <div class="split">
+        <div class="split-left">
+          <p class="eyebrow">Step 02 / 04</p>
+          <h1 class="title">Upload your<br/><em>document</em></h1>
+          <p class="desc">Upload a clear photo of your government-issued ID. Our OCR engine verifies your details instantly.</p>
+          <ul class="tip-list">
+            <li class="tip ok">Good lighting, no glare or shadows</li>
+            <li class="tip ok">All four corners clearly visible</li>
+            <li class="tip ok">Text sharply legible</li>
+            <li class="tip no">No screenshots or photocopies</li>
+          </ul>
+        </div>
+        <div class="split-right">
+          <div class="card">
+            <p class="card-title">ID document</p>
+            <div class="upload-zone" id="uploadZone">
+              <input type="file" id="docFile" accept="image/*,.pdf" hidden/>
+              <div class="upload-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <p class="upload-title">Drop your document here</p>
+              <p class="upload-hint">JPG · PNG · PDF &nbsp;·&nbsp; Max 5 MB</p>
+              <button class="btn-outline" type="button" onclick="document.getElementById('docFile').click()">Browse files</button>
+            </div>
+            <div id="docPreview" class="doc-prev hidden">
+              <div class="dp-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z" stroke="currentColor" stroke-width="1.5"/></svg></div>
+              <div><p id="docFileName" class="dp-name">—</p><p class="dp-status">Uploaded · Verified</p></div>
+              <span class="dp-check">✓</span>
+            </div>
+            <button class="btn-p" id="step2Next" disabled>Continue to Video KYC <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── STEP 3 ── -->
+    <section class="panel" id="step3">
+      <div class="video-layout">
+
+        <div class="vcol">
+          <div class="vcol-head">
+            <p class="eyebrow">Step 03 / 04</p>
+            <span class="rec-tag" id="recTag">STANDBY</span>
+          </div>
+          <h2 class="vtitle">Biometric scan</h2>
+          <p class="vdesc">Look directly at the camera. Keep your face within the oval.</p>
+
+          <div class="vframe">
+            <div class="scan-line" id="scanLine"></div>
+            <div class="corner tl"></div><div class="corner tr"></div>
+            <div class="corner bl"></div><div class="corner br"></div>
+            <video id="videoFeed" autoplay muted playsinline></video>
+            <canvas id="videoCanvas" hidden></canvas>
+            <div class="face-oval">
+              <svg viewBox="0 0 200 240" fill="none"><ellipse cx="100" cy="120" rx="72" ry="95" stroke="url(#og)" stroke-width="1.5" stroke-dasharray="6 4"/><defs><linearGradient id="og" x1="0" y1="0" x2="200" y2="240" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#00D4FF"/><stop offset="100%" stop-color="#00FF8C"/></linearGradient></defs></svg>
+            </div>
+            <div class="live-tag" id="liveTag"><span class="live-dot"></span>LIVE</div>
+          </div>
+
+          <div class="challenge-bar" id="challengeBox" style="display:none">
+            <span class="challenge-ico">👁</span>
+            <div><p class="challenge-lbl">Liveness challenge</p><p class="challenge-txt" id="challengeText"></p></div>
+          </div>
+
+          <div id="illumOverlay" class="illum-overlay hidden"></div>
+
+          <button class="btn-p btn-submit" id="submitKYC" disabled>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            Submit for AI Analysis
+          </button>
+        </div>
+
+        <div class="lcol">
+          <p class="lcol-title">Detection layers</p>
+          <div class="layer-list">
+
+            <div class="lcard" id="card-deepfake">
+              <div class="lcard-head"><div class="lcard-ico c"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div><p class="lcard-name">Deepfake classifier</p><div class="lbadge idle" id="badge-deepfake">idle</div></div>
+              <p class="lcard-detail" id="detail-deepfake">EfficientNet-B4 + FFT spectral analysis</p>
+              <div class="lbar-bg"><div class="lbar" id="bar-deepfake"></div></div>
+            </div>
+
+            <div class="lcard" id="card-rppg">
+              <div class="lcard-head"><div class="lcard-ico p"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><p class="lcard-name">Biological signal (rPPG)</p><div class="lbadge idle" id="badge-rppg">idle</div></div>
+              <p class="lcard-detail" id="detail-rppg">CHROM heart-rate extraction</p>
+              <div class="lbar-bg"><div class="lbar" id="bar-rppg"></div></div>
+            </div>
+
+            <div class="lcard" id="card-acoustic">
+              <div class="lcard-head"><div class="lcard-ico a"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z" stroke="currentColor" stroke-width="1.5"/><path d="M19 10v2a7 7 0 01-14 0v-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div><p class="lcard-name">Acoustic profiling</p><div class="lbadge idle" id="badge-acoustic">idle</div></div>
+              <p class="lcard-detail" id="detail-acoustic">RT60 reverb · SNR · ZCR analysis</p>
+              <div class="lbar-bg"><div class="lbar" id="bar-acoustic"></div></div>
+            </div>
+
+            <div class="lcard" id="card-illum">
+              <div class="lcard-head"><div class="lcard-ico o"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div><p class="lcard-name">Illumination challenge</p><div class="lbadge idle" id="badge-illum">idle</div></div>
+              <p class="lcard-detail" id="detail-illum">Screen flash color correlation</p>
+              <div class="lbar-bg"><div class="lbar" id="bar-illum"></div></div>
+            </div>
+
+            <div class="lcard" id="card-facematch">
+              <div class="lcard-head"><div class="lcard-ico g"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M4 20c0-4 3.58-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div><p class="lcard-name">ArcFace face match</p><div class="lbadge idle" id="badge-facematch">idle</div></div>
+              <p class="lcard-detail" id="detail-facematch">ID document vs live selfie</p>
+              <div class="lbar-bg"><div class="lbar" id="bar-facematch"></div></div>
+            </div>
+
+            <div class="lcard" id="card-hw">
+              <div class="lcard-head"><div class="lcard-ico v"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><rect x="2" y="6" width="20" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M8 14h.01M12 14h.01M16 14h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><p class="lcard-name">Hardware camera auth</p><div class="lbadge idle" id="badge-hw">idle</div></div>
+              <p class="lcard-detail" id="detail-hw">USB/PCIe device verification</p>
+              <div class="lbar-bg"><div class="lbar" id="bar-hw"></div></div>
+            </div>
+
+          </div>
+
+          <div class="risk-meter">
+            <div class="rm-head"><span>Composite risk score</span><span class="rm-val font-mono" id="rmVal">—</span></div>
+            <div class="rm-track">
+              <div class="rm-fill" id="rmFill"></div>
+              <div class="rm-seg s1"></div><div class="rm-seg s2"></div>
+            </div>
+            <div class="rm-labels font-mono"><span style="color:#00FF8C">Safe</span><span style="color:#FFB830">Review</span><span style="color:#FF3B5C">Block</span></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── STEP 4 ── -->
+    <section class="panel" id="step4">
+      <div class="result-layout">
+
+        <div class="rverd-col">
+          <div class="verd-card" id="verdCard">
+            <div class="vring-wrap">
+              <svg class="vring-svg" viewBox="0 0 120 120">
+                <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="8"/>
+                <circle id="ringPath" cx="60" cy="60" r="52" fill="none" stroke="url(#rg)" stroke-width="8" stroke-linecap="round" stroke-dasharray="326.7" stroke-dashoffset="326.7" transform="rotate(-90 60 60)"/>
+                <defs><linearGradient id="rg" x1="0%" y1="0%" x2="100%" y2="100%"><stop id="rg1" offset="0%" stop-color="#00D4FF"/><stop id="rg2" offset="100%" stop-color="#00FF8C"/></linearGradient></defs>
+                <text x="60" y="57" text-anchor="middle" class="ring-num font-mono" id="ringNum">—</text>
+                <text x="60" y="72" text-anchor="middle" class="ring-denom font-mono">/100</text>
+              </svg>
+            </div>
+            <div class="verd-body">
+              <div class="verd-icon" id="verdIcon"></div>
+              <h2 class="verd-title" id="verdTitle">Analyzing...</h2>
+              <p class="verd-sub" id="verdSub">Processing all detection layers</p>
+            </div>
+            <div class="verd-tags" id="verdTags"></div>
+            <div class="verd-meta font-mono" id="verdMeta"></div>
+          </div>
+        </div>
+
+        <div class="rlay-col">
+          <p class="rlay-title">Layer breakdown</p>
+          <div id="rlayGrid" class="rlay-grid"></div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<div id="toast" class="toast hidden"></div>
+<script src="/static/app.js"></script>
+</body>
+</html>

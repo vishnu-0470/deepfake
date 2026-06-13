@@ -1,0 +1,35 @@
+services:
+  - type: web
+    name: deepshield-kyc
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    plan: free
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: "false"
+      - key: HOST
+        value: "0.0.0.0"
+      - key: PORT
+        value: "8000"
+      - key: REDIS_URL
+        fromService:
+          name: deepshield-redis
+          type: redis
+          property: connectionString
+      - key: HW_AUTH_ENABLED
+        value: "false"
+      - key: CORS_ORIGINS
+        value: '["*"]'
+      - key: TESSERACT_CMD
+        value: "/usr/bin/tesseract"
+      - key: WORKERS
+        value: "1"
+    healthCheckPath: /health
+
+  - type: redis
+    name: deepshield-redis
+    plan: free
+    maxmemoryPolicy: allkeys-lru
