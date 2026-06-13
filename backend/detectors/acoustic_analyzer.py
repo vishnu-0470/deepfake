@@ -35,12 +35,7 @@ from backend.models.schemas import AcousticResult, DetectionLabel
 
 settings = get_settings()
 
-try:
-    import librosa
-    LIBROSA_OK = True
-except ImportError:
-    LIBROSA_OK = False
-    logger.warning("[Acoustic] librosa not installed — using scipy fallback")
+LIBROSA_OK = False  # removed — using scipy fallback only
 
 
 class AcousticAnalyzer:
@@ -185,11 +180,8 @@ class AcousticAnalyzer:
                 capture_output=True, timeout=30
             )
 
-            if LIBROSA_OK:
-                audio, _ = librosa.load(tmp_path, sr=target_sr, mono=True)
-            else:
-                _, audio = wavfile.read(tmp_path)
-                audio = audio.astype(np.float32) / 32768.0
+            _, audio = wavfile.read(tmp_path)
+            audio = audio.astype(np.float32) / (32768.0 if audio.dtype == np.int16 else 1.0)
 
             Path(tmp_path).unlink(missing_ok=True)
             return audio
@@ -259,10 +251,6 @@ class AcousticAnalyzer:
     def _spectral_flatness(self, audio: np.ndarray, sr: int) -> Optional[float]:
         """Compute mean spectral flatness (Wiener entropy). Near 1 = white noise, near 0 = tonal."""
         try:
-            if LIBROSA_OK:
-                sf = librosa.feature.spectral_flatness(y=audio)
-                return float(np.mean(sf))
-            # Fallback via FFT
             fft_mag = np.abs(np.fft.rfft(audio[:sr]))  # 1 second
             geo_mean = np.exp(np.mean(np.log(fft_mag + 1e-9)))
             arith_mean = np.mean(fft_mag) + 1e-9

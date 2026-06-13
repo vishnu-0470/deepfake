@@ -15,15 +15,11 @@ Pillow==10.3.0
 numpy==1.26.4
 scipy==1.13.0
 
-# Audio Processing (lightweight, no librosa/numba)
+# Audio Processing (scipy wavfile used directly — no librosa)
 soundfile==0.12.1
-noisereduce==3.0.2
 
 # OCR
 pytesseract==0.3.10
-
-# Signal Processing
-scikit-learn==1.4.2
 
 # Data & Validation
 pydantic==2.7.1

@@ -33,23 +33,10 @@ try:
 except ImportError:
     TESS_OK = False
 
-try:
-    import easyocr
-    _ocr_reader = easyocr.Reader(["en"], gpu=False, verbose=False)
-    EASY_OK = True
-except ImportError:
-    EASY_OK = False
+EASY_OK = False  # easyocr removed — too heavy for free tier
 
 # ── Face recognition backend ─────────────────────────────────────────────────
-try:
-    from insightface.app import FaceAnalysis
-    _face_app = FaceAnalysis(name="buffalo_sc", providers=["CUDAExecutionProvider", "CPUExecutionProvider"])
-    _face_app.prepare(ctx_id=0, det_size=(640, 640))
-    INSIGHT_OK = True
-    logger.info("[FaceMatch] InsightFace (ArcFace) loaded")
-except Exception:
-    INSIGHT_OK = False
-    logger.warning("[FaceMatch] InsightFace not available — using OpenCV face embeddings")
+INSIGHT_OK = False  # insightface removed — too heavy for free tier
 
 
 class DocumentOCRAndFaceMatch:

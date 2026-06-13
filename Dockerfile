@@ -7,18 +7,14 @@ FROM python:3.11-slim
 LABEL maintainer="DeepShield KYC"
 
 # System dependencies
-RUN apt-get update -o Acquire::CompressionTypes::Order::=gz && \
+RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-        gcc g++ make \
+        gcc \
         libgl1 \
         libglib2.0-0 \
-        libsm6 \
-        libxext6 \
-        libxrender-dev \
         ffmpeg \
         tesseract-ocr \
         tesseract-ocr-eng \
-        procps \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
@@ -36,7 +32,6 @@ RUN pip install --upgrade pip --no-cache-dir && \
 # Copy application code
 COPY backend/   ./backend/
 COPY frontend/  ./frontend/
-COPY .env.example .env
 
 # Create required directories
 RUN mkdir -p uploads models logs
